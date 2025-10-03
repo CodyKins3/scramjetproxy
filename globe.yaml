@@ -1,0 +1,9 @@
+name: globe-node-proxy
+kind: service
+
+build:
+  command: npm install
+
+start:
+  command: npm start
+  port: 8080
