@@ -1,10 +1,13 @@
-name: my_proxy
-kind: service
+name: scramjet-proxy
+entrypoint: bin/main.dart
 
-build:
-  command: dart pub get
+# optional, but nice to include
+env:
+  PORT: "8080"
 
-start:
-  entrypoint: bin/server.dart
-  command: dart run bin/server.dart
-  port: 8080
+# what files should be included when deploying
+include:
+  - pubspec.yaml
+  - bin/**
+  - lib/**
+  - globe.yaml
