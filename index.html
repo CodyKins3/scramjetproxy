@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Simple Proxy UI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; padding: 0 16px; }
+    input[type="url"] { width: 70%; padding: 8px; font-size: 14px; }
+    button { padding: 8px 12px; }
+    iframe { width: 100%; height: 70vh; border: 1px solid #ddd; margin-top: 12px; }
+    .note { color: #666; margin-top: 8px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h2>Simple Proxy</h2>
+  <p>Enter a URL to browse through this proxy (for testing/learning only):</p>
+
+  <form id="goForm">
+    <input id="urlInput" type="url" placeholder="https://example.com" required />
+    <button type="submit">Go</button>
+  </form>
+
+  <div class="note">Note: many sites use cookies, CSP, or X-Frame-Options that may make them not display inside iframes. If iframe fails, you'll get the raw HTML in a new window.</div>
+
+  <!-- iframe to display proxied page -->
+  <iframe id="viewer" src="" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+
+  <script src="main.js"></script>
+</body>
+</html>
