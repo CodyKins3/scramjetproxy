@@ -1,0 +1,9 @@
+name: my_proxy
+description: A simple Dart proxy for Globe.dev
+version: 0.1.0
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  shelf: ^1.4.0
+  http: ^1.1.0
