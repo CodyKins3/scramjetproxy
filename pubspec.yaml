@@ -1,6 +1,6 @@
-name: my_proxy
-description: A simple Dart proxy for Globe.dev
-version: 0.1.0
+name: scramjet_proxy
+description: A secure Dart proxy for Globe.dev
+version: 0.1.1
 environment:
   sdk: ">=3.1.0 <4.0.0"
 
