@@ -1,9 +1,10 @@
-name: globe-node-proxy
+name: my_proxy
 kind: service
 
 build:
-  command: npm install
+  command: dart pub get
 
 start:
-  command: npm start
+  entrypoint: bin/server.dart
+  command: dart run bin/server.dart
   port: 8080
