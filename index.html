@@ -1,31 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Simple Proxy UI</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scramjet Proxy</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; padding: 0 16px; }
-    input[type="url"] { width: 70%; padding: 8px; font-size: 14px; }
-    button { padding: 8px 12px; }
-    iframe { width: 100%; height: 70vh; border: 1px solid #ddd; margin-top: 12px; }
-    .note { color: #666; margin-top: 8px; font-size: 13px; }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input { width: 70%; padding: 8px; margin-right: 10px; }
+    button { padding: 8px 16px; }
+    iframe { width: 100%; height: 70vh; border: 1px solid #ccc; margin-top: 20px; }
   </style>
 </head>
 <body>
-  <h2>Simple Proxy</h2>
-  <p>Enter a URL to browse through this proxy (for testing/learning only):</p>
-
-  <form id="goForm">
-    <input id="urlInput" type="url" placeholder="https://example.com" required />
+  <h2>Scramjet Proxy (HTTPS)</h2>
+  <form id="proxyForm">
+    <input type="url" id="urlInput" placeholder="https://example.com" required pattern="https?://.+" />
     <button type="submit">Go</button>
   </form>
+  <iframe id="viewer"></iframe>
 
-  <div class="note">Note: many sites use cookies, CSP, or X-Frame-Options that may make them not display inside iframes. If iframe fails, you'll get the raw HTML in a new window.</div>
+  <script>
+    const form = document.getElementById('proxyForm');
+    const iframe = document.getElementById('viewer');
 
-  <!-- iframe to display proxied page -->
-  <iframe id="viewer" src="" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const url = document.getElementById('urlInput').value;
 
-  <script src="main.js"></script>
+      if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        alert("Please enter a valid URL starting with http:// or https://");
+        return;
+      }
+
+      iframe.src = '?url=' + encodeURIComponent(url);
+    });
+  </script>
 </body>
 </html>
