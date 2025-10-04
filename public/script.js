@@ -30,6 +30,28 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       // Otherwise, search with DuckDuckGo
       window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
-    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#search-form");
+  const input = document.querySelector("#search-box");
+  const quickLinks = document.querySelectorAll(".quicklink");
+
+  // Search box: send query to DuckDuckGo through proxy
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = input.value.trim();
+    if (!query) return;
+
+    const url = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+    window.location.href = `/proxy?url=${encodeURIComponent(url)}`;
+  });
+
+  // Quick links: open proxied
+  quickLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = link.getAttribute("data-url");
+      window.location.href = `/proxy?url=${encodeURIComponent(target)}`;
+    });
   });
 });
